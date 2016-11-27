@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Style from './Bing.css';
+import './Bing.css';
 
 export default class Form extends Component{
   render(){

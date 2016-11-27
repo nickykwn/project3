@@ -4,6 +4,8 @@ import './App.css';
 import Bing from './bing/Bing.jsx';
 import Vision from './vision/Vision.jsx';
 import Rover from './rover/Rover.jsx';
+import SignUpForm from './SignUp/SignUpForm.jsx';
+import LogInForm from './LogIn/LogInForm.jsx';
 
 // create a React Component called _App_
 class App extends Component {
@@ -15,8 +17,18 @@ class App extends Component {
       roverImage: '',
       searchImages: false,
       bingImage: '',
-      visionText: ''
-    }
+      visionText: '',
+      signup: {
+        username: '',
+        password: ''
+      },
+      login: {
+        loggedIn: false,
+        username: '',
+        password: ''
+      },
+      username: ''
+    };
   }
 
   getVisionData(url) {
@@ -83,10 +95,132 @@ class App extends Component {
     .catch(err => console.log(err))
   }
 
+  updateFormSignUpUsername(e) {
+    console.log(e.target.value);
+    this.setState({
+      signup: {
+        username: e.target.value,
+        password: this.state.signup.password
+      }
+    });
+  }
 
+  updateFormSignUpPassword(e) {
+    console.log(e.target.value);
+    this.setState({
+      signup: {
+        username: this.state.signup.username,
+        password: e.target.value
+      }
+    });
+  }
+
+  updateFormLogInUsername(e) {
+    this.setState({
+      login: {
+        username: e.target.value,
+        password: this.state.login.password
+      }
+    });
+  }
+
+  updateFormLogInPassword(e) {
+    this.setState({
+      login: {
+        username: this.state.login.username,
+        password: e.target.value
+      }
+    });
+  }
+
+  handleSignUp() {
+    fetch('/api/users', {
+      headers: {
+        'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.signup.username,
+        password: this.state.signup.password
+      })
+    })
+    .then(this.setState({
+      username: this.state.login.username,
+      signup: {
+        username: '',
+        password: '',
+      }
+    }))
+    .then(this.alertInfo('You have signed up!'))
+    .catch(err => console.log(err));
+  }
+
+  handleLogIn() {
+    fetch('/api/auth', {
+      headers: {
+        'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.login.username,
+        password: this.state.login.password
+      })
+    })
+    .then(this.setState({
+      username: this.state.login.username,
+      login: {
+        username: '',
+        password: '',
+      }
+    }))
+    .then(this.onSuccessfulLogIn)
+    .catch(err => console.log(err));
+  }
+
+  onSuccessfulLogIn(a, b) {
+    console.log(a, b);
+  }
+
+  alertInfo(msg) {
+    alert(msg);
+  }
+
+saveSearch(url, url2, text, username) {
+  console.log('^^^^^^the username is:',username)
+  return fetch(`/images`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+
+    body: JSON.stringify({
+      'url': url,
+      'url2': url2,
+      'text': text,
+      'username': username
+    })
+  })
+  .catch(err => console.log(err));
+}
   render(){
     return (
       <div className="app-container">
+        <SignUpForm
+          signUpUserName={this.state.signup.username}
+          signUpPassword={this.state.signup.password}
+          updateFormUsername={event => this.updateFormSignUpUsername(event)}
+          updateFormPassword={event => this.updateFormSignUpPassword(event)}
+          handleFormSubmit={() => this.handleSignUp()}
+        />
+        <LogInForm
+          className={this.state.login.loggedIn ? 'hidden' : ''}
+          logInUserName={this.state.login.username}
+          logInPassword={this.state.login.password}
+          updateFormUsername={event => this.updateFormLogInUsername(event)}
+          updateFormPassword={event => this.updateFormLogInPassword(event)}
+          handleFormSubmit={() => this.handleLogIn()}
+        />
+
         <div className="image-container">
           <Rover
             roverData={this.state.roverImage}
@@ -107,8 +241,11 @@ class App extends Component {
           </div>
         <button>Refresh</button>
         <Vision />
-        <button id="save-searches">Save Searches</button>
-      </div>
+        <div className="save-searches" onClick={() => this.saveSearch(this.state.roverImage, this.state.bingImage, this.state.visionText, this.state.username)}>
+          Save Searches
+        </div>
+
+    </div>
     );
   }
 }
