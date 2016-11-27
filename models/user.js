@@ -10,10 +10,18 @@ function createUser(req, res, next) {
 }
 
 function findByUsername(username) {
+<<<<<<< HEAD
   return db.one('SELECT * FROM users WHERE username = $1'. [username]);
+=======
+  return db.one('SELECT * FROM users WHERE username = $1', [username]);
+>>>>>>> 30c4a1a5650f0deb5a449aeaf52088ac3048d141
 }
 
 module.exports = {
   createUser,
   findByUsername
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 30c4a1a5650f0deb5a449aeaf52088ac3048d141
