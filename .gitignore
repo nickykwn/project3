@@ -34,6 +34,11 @@ node_modules
 
 # environmental variables
 .env
+<<<<<<< HEAD
 
 # distribution files
 dist
+=======
+dist/
+db/db.js
+>>>>>>> master
