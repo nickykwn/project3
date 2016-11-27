@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Style from './SavedImages.css';
+import './SavedImages.css';
 
 export default class Rover extends Component{
   

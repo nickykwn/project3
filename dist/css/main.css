@@ -30,6 +30,7 @@ body {
   position: relative;
 }
 
+
 .rover-container {
   height: 545px;
   width: 545px;
@@ -59,6 +60,16 @@ p {
 .vision-button {
   margin-top: 40px;
   font-size: 35px;
+}
+
+p {
+  font-size: 30px;
+}
+
+img {
+  max-height: 100%;
+  position: relative;
+
 }
 
 .boxcrosshair {

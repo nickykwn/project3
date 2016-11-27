@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import style from './LogInForm.css';
+import './LogInForm.css';
 
 // create a React Component called _App_
 class LogInForm extends Component {
 
   render(){
     return (
-      <div id={style['form-container']}>
+      <div id='form-container'>
         <input
           type="text"
           placeholder="email"
