@@ -3,6 +3,12 @@ import './SavedImagesItem.css';
 
 export default class SavedImagesItem extends Component{
 
+  handleDeleteClick(id, username) {
+    this.props.deleteSaved(id);
+    setTimeout(() => {this.props.getSavedImages(username)}, 300);
+  }
+
+
   render(){
     return (
       <div className="saved-container">
@@ -13,8 +19,11 @@ export default class SavedImagesItem extends Component{
         <div className="saved-vision-container">
           <h3>{this.props.visiontext}</h3>
         </div>
-        <h3>X</h3>
+        <div onClick={() => this.handleDeleteClick(this.props.id, this.props.username)}>Delete</div>
+
       </div>
     );
   }
 }
+
+

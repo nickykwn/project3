@@ -16,6 +16,12 @@ function saveFavorites(req, res, next) {
  .catch(err => next(err));
 }
 
+function deleteImage(req, res, next) {
+  db.none(`DELETE FROM savedSearch WHERE search_id = $1;`, [req.params.id])
+  .then(next())
+  .catch(err => next(err));
+}
+
 // function deleteFavorite(req, res, next) {
 //  db.none(`DELETE FROM images WHERE id = $1`, [req.params.id])
 //  .then(next())
@@ -25,7 +31,8 @@ function saveFavorites(req, res, next) {
 
 module.exports = { 
   getFavorites,
-  saveFavorites 
+  saveFavorites,
+  deleteImage 
 };
  // showAllFavorites,
  

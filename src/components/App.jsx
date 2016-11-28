@@ -135,7 +135,7 @@ class App extends Component {
       this.setState({
         bingBox: 'large-images',
         bingContainer: 'large-images-container',
-        bingImage: data.value[4].contentUrl,
+        bingImage: data.value[2].contentUrl,
         searchImages: true,
         saveButton: 'save-searches',
         refreshButton: 'refreshButton'
@@ -280,13 +280,26 @@ getSavedImages(username) {
 
 handleSaveClick(url, url2, text, username) {
   this.saveSearch(url, url2, text, username);
-  this.getSavedImages(username); 
+  setTimeout(() => {this.getSavedImages(username)}, 300); 
 }
 
 
 loginFunctions(username) {
   this.getSavedImages(username);
   this.handleLogIn();
+}
+
+deleteSaved(id) {
+  fetch(`/images/${id}`, {
+    method: 'delete'
+  })
+  .then(() => {
+    const savedImages = this.state.savedImages.filter((image) => {
+      return image.id !== id;
+    });
+      this.setState({ savedImages });
+    })
+    .catch(err => console.log(err));
 }
 
 
@@ -296,7 +309,7 @@ loginFunctions(username) {
         <header>
           <div className={this.state.userInfo}>
             <img className="userIcon" src={this.state.User} alt="user"/>
-            <p id="username">{this.state.username}</p>
+            <p>{this.state.username}</p>
           </div>
         </header>
 
@@ -340,7 +353,6 @@ loginFunctions(username) {
             getBingImage={this.getBingImage.bind(this)}
           />
         </div>
-
           <div className="vision-container">
             <Vision
               counter={this.state.counter}
@@ -349,17 +361,16 @@ loginFunctions(username) {
               getVisionData={this.getVisionData.bind(this)}
             />
           </div>
-
           <div className={this.state.saveButton} onClick={() => this.handleSaveClick(this.state.roverImage, this.state.bingImage, this.state.visionText, this.state.username)}>
            <img className="saveImage" src={this.state.Save} alt="Save"/>
           </div>
-
           <div className={this.state.refreshButton} onClick={() => {this.refreshPage()}}>
             <img className="refreshImage" src={this.state.Refresh} alt="Refresh"/>
           </div>
-            
-
-          <SavedImages 
+          <SavedImages
+            username={this.state.username}
+            getSavedImages={this.getSavedImages.bind(this)}
+            deleteSaved={this.deleteSaved.bind(this)} 
             savedImages={this.state.savedImages}
             // getSavedImages={this.getSavedImages.bind(this)}
           />
