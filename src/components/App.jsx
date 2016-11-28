@@ -240,9 +240,9 @@ saveSearch(url, url2, text, username) {
 
 }
 
-getSavedImages() {
-  console.log('hey i am fetching images')
-  return fetch(`/images`, {
+getSavedImages(username) {
+  console.log('hey i am fetching images for', username)
+  return fetch(`/images/${username}`, {
     method: 'GET'
   })
   .then(r => r.json())
@@ -253,6 +253,11 @@ getSavedImages() {
     });
   })
   .catch(err => console.log(err));
+}
+
+loginFunctions(username) {
+  this.getSavedImages(username);
+  this.handleLogIn();
 }
 
 
@@ -268,12 +273,14 @@ getSavedImages() {
                 handleFormSubmit={() => this.handleSignUp()}
               />
               <LogInForm
+                loginFunctions={() => this.loginFunctions(this.state.login.username)}
                 className={this.state.login.loggedIn ? 'hidden' : ''}
                 logInUsername={this.state.login.username}
                 logInPassword={this.state.login.password}
                 updateFormUsername={event => this.updateFormLogInUsername(event)}
                 updateFormPassword={event => this.updateFormLogInPassword(event)}
                 handleFormSubmit={() => this.handleLogIn()}
+                getSavedImages={() => this.getSavedImages()}
               />
 
         <div className="image-container">
@@ -314,7 +321,7 @@ getSavedImages() {
 
           <SavedImages 
             savedImages={this.state.savedImages}
-            getSavedImages={this.getSavedImages.bind(this)}
+            // getSavedImages={this.getSavedImages.bind(this)}
           />
 
       </div>

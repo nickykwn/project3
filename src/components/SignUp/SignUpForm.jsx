@@ -19,7 +19,7 @@ class SignUpForm extends Component {
           value={this.props.signUpPassword}
           onChange={this.props.updateFormPassword}
         />
-        <button onClick={this.props.handleFormSubmit}>
+        <button onClick={this.props.loginFunctions}>
           SignUp!
         </button>
       </div>

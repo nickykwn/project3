@@ -6,7 +6,6 @@ import SavedImagesItem from '../SavedImagesItem/SavedImagesItem.jsx';
 export default class SavedImages extends Component{
   
   renderSavedImages() {
-    console.log(this.props.savedImages.roverurl)
     return this.props.savedImages.map((result, i) => 
       <SavedImagesItem 
         roverurl={result.roverurl}
@@ -16,10 +15,6 @@ export default class SavedImages extends Component{
         id={result.id}
       />
     )
-  }
-
-  componentWillMount() {
-    this.props.getSavedImages();
   }
 
   render(){

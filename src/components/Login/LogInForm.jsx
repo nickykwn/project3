@@ -19,7 +19,7 @@ class LogInForm extends Component {
           value={this.props.logInPassword}
           onChange={this.props.updateFormPassword}
         />
-        <button onClick={this.props.handleFormSubmit}>
+        <button onClick={this.props.loginFunctions}>
           Log In!
         </button>
       </div>
