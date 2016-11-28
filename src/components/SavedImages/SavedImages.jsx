@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import './SavedImages.css';
-import '../App.css';
 import SavedImagesItem from '../SavedImagesItem/SavedImagesItem.jsx';
 
 export default class SavedImages extends Component{
-  
+
   renderSavedImages() {
     console.log('saved images.............', this.props);
-    return this.props.savedImages.map((result, i) => 
-      <SavedImagesItem 
+    return this.props.savedImages.map((result, i) =>
+      <SavedImagesItem
+        DeleteButton={this.props.DeleteButton}
         username={this.props.username}
         getSavedImages={this.props.getSavedImages}
         deleteSaved={this.props.deleteSaved}
@@ -24,7 +23,7 @@ export default class SavedImages extends Component{
   render(){
     return (
       <div className="saved-image-container">
-        
+
         {this.renderSavedImages()}
 
       </div>
