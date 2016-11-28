@@ -7,6 +7,7 @@ import Rover from './rover/Rover.jsx';
 import SignUpForm from './SignUp/SignUpForm.jsx';
 import LogInForm from './LogIn/LogInForm.jsx';
 import SavedImages from './SavedImages/SavedImages.jsx';
+import SavedImagesItem from './SavedImagesItem/SavedImagesItem.jsx';
 import Refresh from '../images/Refresh.png';
 import Crosshair from '../images/Inverse.png';
 
@@ -37,7 +38,7 @@ class App extends Component {
         password: ''
       },
       username: '',
-      savedImages: ''
+      savedImages: []
     };
    } 
   
@@ -250,10 +251,10 @@ getSavedImages() {
     this.setState({
       savedImages: data
     });
-    console.log(this.state.savedImages)
   })
   .catch(err => console.log(err));
 }
+
 
   render(){
     return (
@@ -312,8 +313,8 @@ getSavedImages() {
           </div>
 
           <SavedImages 
-          SavedImages={this.state.SavedImages}
-          getSavedImages={this.getSavedImages.bind(this)}
+            savedImages={this.state.savedImages}
+            getSavedImages={this.getSavedImages.bind(this)}
           />
 
       </div>

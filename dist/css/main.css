@@ -30,7 +30,6 @@ body {
   position: relative;
 }
 
-
 .rover-container {
   height: 545px;
   width: 545px;
@@ -60,16 +59,6 @@ p {
 .vision-button {
   margin-top: 40px;
   font-size: 35px;
-}
-
-p {
-  font-size: 30px;
-}
-
-img {
-  max-height: 100%;
-  position: relative;
-
 }
 
 .boxcrosshair {
@@ -120,5 +109,21 @@ img {
 .rover-container {
   display: inline-block;
 }
+.saved-images-container{
+  height: 550px;
+}.saved-container{
+  margin: 0 auto;
+  text-align: center;
+}
 
+.saved-image-container {
+  height: 300px;
+  margin: 0 auto;
+}
+
+img {
+  height: 300px;
+  width: auto;
+  display: inline-block;
+}
 /*# sourceMappingURL=main.css.map*/
