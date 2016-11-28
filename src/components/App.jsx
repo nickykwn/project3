@@ -7,9 +7,11 @@ import Rover from './rover/Rover.jsx';
 import SignUpForm from './SignUp/SignUpForm.jsx';
 import LogInForm from './LogIn/LogInForm.jsx';
 import SavedImages from './SavedImages/SavedImages.jsx';
-import SavedImagesItem from './SavedImagesItem/SavedImagesItem.jsx';
 import Refresh from '../images/Refresh.png';
 import Crosshair from '../images/Inverse.png';
+import Save from '../images/save.png';
+import User from '../images/user.png';
+import SavedImagesItem from './SavedImagesItem/SavedImagesItem.jsx';
 
 // create a React Component called _App_
 class App extends Component {
@@ -18,16 +20,23 @@ class App extends Component {
     super();
 
     this.state = {
+      Save: Save,
       roverImage: Crosshair,
       searchImages: false,
       bingImage: Crosshair,
       visionText: '',
       Refresh: Refresh,
+      User: User,
       counter: 0,
-      roverBox: 'boxcrosshair',
-      bingBox: 'boxcrosshair',
+      roverBox: 'hidden',
+      bingBox: '',
       roverContainer: 'rover-container',
-      bingContainer: 'bing-container',
+      bingContainer: '',
+      signUpFormDisplay: 'signup-form',
+      logInFormDisplay: 'form-container',
+      userInfo: 'hidden',
+      refreshButton: 'hidden',
+      saveButton: 'hidden',
       signup: {
         username: '',
         password: ''
@@ -55,7 +64,11 @@ class App extends Component {
     .then((data) => {
       console.log(data)
       this.setState({
-        visionText: data.description.captions[0].text
+        counter: 2,
+        visionText: data.description.captions[0].text,
+        CrosshairHover: '',
+        bingContainer: 'bing-container',
+        bingBox: 'boxcrosshair'
       })
     })
     .catch(err => console.log(err))
@@ -70,7 +83,7 @@ class App extends Component {
         roverBox: 'large-images',
         roverContainer: 'large-images-container',
         counter: 1,
-        roverImage: data.photos[2].img_src,
+        roverImage: data.photos[1].img_src,
         RoverImageHover: '',
         visionText: <img className="brighten" className="crosshair" src={Crosshair} alt="Click"/>
       })
@@ -80,16 +93,20 @@ class App extends Component {
 
   refreshPage(){
     this.setState({
+      Save: Save,
       roverImage: Crosshair,
       searchImages: false,
       bingImage: Crosshair,
       visionText: '',
       Refresh: Refresh,
+      User: User,
       counter: 0,
       roverBox: 'boxcrosshair',
-      bingBox: 'boxcrosshair',
-      roverContainer: 'bing-rover-container',
-      bingContainer: 'bing-rover-container'
+      bingBox: '',
+      roverContainer: 'rover-container',
+      bingContainer: 'hidden',
+      refreshButton: 'hidden',
+      saveButton: 'hidden'
     })
   }
 
@@ -120,7 +137,8 @@ class App extends Component {
         bingContainer: 'large-images-container',
         bingImage: data.value[4].contentUrl,
         searchImages: true,
-        BingImageHover: ''
+        saveButton: 'save-searches',
+        refreshButton: 'refreshButton'
       })
     })
     .catch(err => console.log(err))
@@ -182,9 +200,9 @@ updateFormSignUpUsername(e) {
       signup: {
         username: '',
         password: ''
-      }
+      },
+      signUpFormDisplay: 'hidden'
     }))
-    .then(this.alertInfo('You have signed up!'))
     .catch(err => console.log(err));
   }
 
@@ -200,11 +218,15 @@ updateFormSignUpUsername(e) {
       })
     })
     .then(this.setState({
-      username: this.state.login.username,      
+      username: this.state.login.username,
       login: {
         username: '',
         password: ''
-      }
+      },
+      signUpFormDisplay: 'hidden',
+      logInFormDisplay: 'hidden',
+      userInfo: 'userInfo',
+      roverBox: 'boxcrosshair'
     }))
     .then(this.onSuccessfulLogIn)
     .catch(err => console.log(err));
@@ -235,6 +257,7 @@ saveSearch(url, url2, text, username) {
         'text': text,
         'username': username
        })
+
     })
   .catch(err => console.log(err));
 
@@ -255,6 +278,12 @@ getSavedImages(username) {
   .catch(err => console.log(err));
 }
 
+handleSaveClick(url, url2, text, username) {
+  this.saveSearch(url, url2, text, username);
+  this.getSavedImages(username); 
+}
+
+
 loginFunctions(username) {
   this.getSavedImages(username);
   this.handleLogIn();
@@ -264,8 +293,17 @@ loginFunctions(username) {
   render(){
     return (
       <div className="app-container">
+        <header>
+          <div className={this.state.userInfo}>
+            <img className="userIcon" src={this.state.User} alt="user"/>
+            <p id="username">{this.state.username}</p>
+          </div>
+        </header>
 
+          <div className="image-container">
+            <div className="login-container">
               <SignUpForm
+                signUpFormDisplay={this.state.signUpFormDisplay}
                 signUpUsername={this.state.signup.username}
                 signUpPassword={this.state.signup.password}
                 updateFormUsername={event => this.updateFormSignUpUsername(event)}
@@ -273,6 +311,7 @@ loginFunctions(username) {
                 handleFormSubmit={() => this.handleSignUp()}
               />
               <LogInForm
+                logInFormDisplay={this.state.logInFormDisplay}
                 loginFunctions={() => this.loginFunctions(this.state.login.username)}
                 className={this.state.login.loggedIn ? 'hidden' : ''}
                 logInUsername={this.state.login.username}
@@ -282,8 +321,9 @@ loginFunctions(username) {
                 handleFormSubmit={() => this.handleLogIn()}
                 getSavedImages={() => this.getSavedImages()}
               />
+          </div>
 
-        <div className="image-container">
+        
           <Rover
             roverContainer={this.state.roverContainer}
             roverBox={this.state.roverBox}
@@ -309,15 +349,15 @@ loginFunctions(username) {
               getVisionData={this.getVisionData.bind(this)}
             />
           </div>
-        <button>Refresh</button>
-        <Vision />
-          <div className="save-searches" onClick={() => this.saveSearch(this.state.roverImage, this.state.bingImage, this.state.visionText, this.state.username)}>
-          Save Searches
+
+          <div className={this.state.saveButton} onClick={() => this.handleSaveClick(this.state.roverImage, this.state.bingImage, this.state.visionText, this.state.username)}>
+           <img className="saveImage" src={this.state.Save} alt="Save"/>
           </div>
 
-          <div className="refreshButton" onClick={() => {this.refreshPage()}}>
+          <div className={this.state.refreshButton} onClick={() => {this.refreshPage()}}>
             <img className="refreshImage" src={this.state.Refresh} alt="Refresh"/>
           </div>
+            
 
           <SavedImages 
             savedImages={this.state.savedImages}

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import './SignUpForm.css';
+import style from './SignUpForm.css';
 
 // create a React Component called _App_
 class SignUpForm extends Component {
 
   render(){
     return (
-      <div id='form-container'>
+      <div className={this.props.signUpFormDisplay}>
         <input
           type="text"
-          placeholder="email"
+          placeholder="username"
           value={this.props.signUpUsername}
           onChange={this.props.updateFormUsername}
         />
@@ -19,9 +19,9 @@ class SignUpForm extends Component {
           value={this.props.signUpPassword}
           onChange={this.props.updateFormPassword}
         />
-        <button onClick={this.props.loginFunctions}>
-          SignUp!
-        </button>
+        <div className="formbutton" onClick={this.props.handleFormSubmit}>
+          register
+        </div>
       </div>
     );
   }

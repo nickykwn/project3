@@ -13,6 +13,7 @@ export default class SavedImagesItem extends Component{
         <div className="saved-vision-container">
           <h3>{this.props.visiontext}</h3>
         </div>
+        <h3>X</h3>
       </div>
     );
   }

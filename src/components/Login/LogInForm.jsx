@@ -6,10 +6,10 @@ class LogInForm extends Component {
 
   render(){
     return (
-      <div id='form-container'>
+      <div className={this.props.logInFormDisplay}>
         <input
           type="text"
-          placeholder="email"
+          placeholder="username"
           value={this.props.logInUsername}
           onChange={this.props.updateFormUsername}
         />
@@ -19,9 +19,9 @@ class LogInForm extends Component {
           value={this.props.logInPassword}
           onChange={this.props.updateFormPassword}
         />
-        <button onClick={this.props.loginFunctions}>
-          Log In!
-        </button>
+        <div className="formbutton" onClick={this.props.loginFunctions}>
+          log in
+        </div>
       </div>
     );
   }
