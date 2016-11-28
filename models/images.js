@@ -1,4 +1,4 @@
-const db = require('../db/db');
+const db = require('./db.js');
 
 function getFavorites(req, res, next) {
   console.log('the queried username is:', req.params.username )
