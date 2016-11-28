@@ -5,10 +5,14 @@ class LogInForm extends Component {
 
   render(){
     return (
+<<<<<<< HEAD
       <div id='form-container'>
+=======
+      <div className={this.props.logInFormDisplay}>
+>>>>>>> 20ffc765159c57ad97cd78476dba5af5ed6d414a
         <input
           type="text"
-          placeholder="email"
+          placeholder="username"
           value={this.props.logInUsername}
           onChange={this.props.updateFormUsername}
         />
@@ -18,9 +22,9 @@ class LogInForm extends Component {
           value={this.props.logInPassword}
           onChange={this.props.updateFormPassword}
         />
-        <button onClick={this.props.handleFormSubmit}>
-          Log In!
-        </button>
+        <div className="formbutton" onClick={this.props.loginFunctions}>
+          log in
+        </div>
       </div>
     );
   }
