@@ -1,7 +1,8 @@
 const db = require('../db/db');
 
 function getFavorites(req, res, next) {
- db.any(`SELECT * FROM savedSearch;`)
+  console.log('the queried username is:', req.params.username )
+ db.any('SELECT * FROM savedSearch WHERE username = $1;', [req.params.username])
  .then((images) => {
    res.images = images;
    next();
@@ -15,6 +16,12 @@ function saveFavorites(req, res, next) {
  .catch(err => next(err));
 }
 
+function deleteImage(req, res, next) {
+  db.none(`DELETE FROM savedSearch WHERE search_id = $1;`, [req.params.id])
+  .then(next())
+  .catch(err => next(err));
+}
+
 // function deleteFavorite(req, res, next) {
 //  db.none(`DELETE FROM images WHERE id = $1`, [req.params.id])
 //  .then(next())
@@ -24,7 +31,8 @@ function saveFavorites(req, res, next) {
 
 module.exports = { 
   getFavorites,
-  saveFavorites 
+  saveFavorites,
+  deleteImage 
 };
  // showAllFavorites,
  

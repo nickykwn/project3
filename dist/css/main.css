@@ -6,6 +6,22 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
+.login-container{
+  width: 175px;
+  margin: 0 auto;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 200px;
+  z-index: 2;
+}
+
+.hidden {
+  display: none;
+}
+
 .large-images-container {
   display: inline-block;
 }
@@ -18,16 +34,16 @@ body {
 
 .image-container {
   text-align: center;
-  margin-top: 150px;
   height: 550px;
 }
 
 .bing-container {
-  height: 545px;
-  width: 545px;
+  height: 547px;
+  width: 549px;
   border: 2px solid black;
   display: inline-block;
   position: relative;
+  top: -258px;
 }
 
 .rover-container {
@@ -48,14 +64,93 @@ p {
   font-size: 30px;
 }
 
+p#username {
+  font-size: 20px;
+  display: inline;
+}
+
+.refreshImage:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+  cursor: hand;
+}
+
 .refreshImage {
+  background-color: black;
   position: absolute;
-  top: 75px;
-  right: 75px;
+  top: 30px;
+  right: 50px;
   width: 30px;
   height: 30px;
 }
 
+.saveImage:hover {
+  background-color: lightgrey;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.saveImage {
+  background-color: black;
+  position: absolute;
+  top: 752px;
+  right: 50px;
+  width: 30px;
+  height: 30px;
+}
+
+div.userInfo {
+  position: fixed;
+  top: 30px;
+  left: 50px;
+}
+
+.userIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.vision-button {
+  margin-top: 40px;
+  font-size: 35px;
+  text-align: center;
+}
+
+.boxcrosshair {
+  height: 50px;
+  width: 50px;
+  margin-top: 43%;
+  background-color: black;
+  background-size: 45px 45px;
+  transition: transform .8s ease-in-out;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 3px solid #fafafa;
+}
+
+.crosshair {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  background-size: 45px 45px;
+  transition: transform .8s ease-in-out;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 3px solid #fafafa;
+}
+
+.boxcrosshair:hover {
+  background-color: red;
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+  cursor: pointer;
+  cursor: hand;
+}
+
 .vision-button {
   margin-top: 40px;
   font-size: 35px;
@@ -87,55 +182,52 @@ p {
 }
 
 .boxcrosshair:hover {
-  background-color: blue;
+  background-color: red;
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
-}
-
-.vision-button {
-  margin-top: 40px;
-  font-size: 35px;
-}
-
-.boxcrosshair {
-  height: 50px;
-  width: 50px;
-  margin-top: 43%;
-  background-color: black;
-  background-size: 45px 45px;
-  transition: transform .8s ease-in-out;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: 3px solid #fafafa;
-}
-
-.crosshair {
-  height: 50px;
-  width: 50px;
-  background-color: black;
-  background-size: 45px 45px;
-  transition: transform .8s ease-in-out;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-  border: 3px solid #fafafa;
-}
-
-.boxcrosshair:hover {
-  background-color: blue;
-  -webkit-transform: rotate(360deg);
-  transform: rotate(360deg);
+  cursor: pointer;
+  cursor: hand;
 }
 
 .crosshair:hover {
-  background-color: blue;
+  background-color: red;
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
+  cursor: pointer;
+  cursor: hand;
 }
 
-.brighten:hover {
-  background-color: blue;
+header {
+  height: 150px;
+}
+
+input {
+  color: black;
+  font-size: 17px;
+  border: 2px solid black;
+  padding: 3px;
+  margin: 3px;
+  z-index: 2;
+}
+
+.formbutton {
+  z-index: 1;
+  border: 2px solid black;
+  position: relative;
+  right: 36px;
+  padding: 3px;
+  width: 90px;
+  line-height: 20px;
+  text-align: center;
+  font-size: 17px;
+  cursor: pointer;
+  cursor: hand;
+  background-color: white;
+  margin: 0 auto;
+}
+
+.formbutton:hover {
+  border: 2px solid lightgrey;
 }
 .bing-container {
   display: inline-block;
@@ -143,5 +235,21 @@ p {
 .rover-container {
   display: inline-block;
 }
+.saved-images-container{
+  height: 550px;
+}.saved-container{
+  margin: 0 auto;
+  text-align: center;
+}
 
+.saved-image-container {
+  height: 300px;
+  margin: 0 auto;
+}
+
+img {
+  height: 300px;
+  width: auto;
+  display: inline-block;
+}
 /*# sourceMappingURL=main.css.map*/
