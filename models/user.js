@@ -1,4 +1,4 @@
-const db = require('../db/db');
+const db = require('./db.js');
 
 function createUser(req, res, next) {
   db.none(`INSERT INTO users (username, password) VALUES ($1, $2)`, [req.body.username, req.body.password])
