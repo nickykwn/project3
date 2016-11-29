@@ -16,7 +16,7 @@ export default class SavedImagesItem extends Component{
             <img src={this.props.bingurl} />
         </div>
         <div className="saved-vision-container">
-          <h3>{this.props.visiontext}</h3>
+          <p>{this.props.visiontext}</p>
         </div>
         <div onClick={() => this.handleDeleteClick(this.props.id, this.props.username)}><img className="DeleteButton" src={this.props.DeleteButton}/></div>
 
