@@ -12,7 +12,7 @@ CREATE TABLE users (
 
 CREATE TABLE savedSearch (
   search_id SERIAL PRIMARY KEY,
-  roverUrl TEXT, 
+  roverUrl TEXT,
   bingUrl TEXT,
   visionText TEXT,
   username VARCHAR REFERENCES users(username)

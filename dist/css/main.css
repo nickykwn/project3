@@ -34,7 +34,7 @@ body {
 
 .image-container {
   text-align: center;
-  height: 550px;
+  height: 90vh;
 }
 
 .bing-container {
@@ -43,7 +43,7 @@ body {
   border: 2px solid black;
   display: inline-block;
   position: relative;
-  top: -258px;
+  top: -256px;
 }
 
 .rover-container {
@@ -84,6 +84,40 @@ p#username {
   height: 30px;
 }
 
+.saved-container{
+  margin: 0 auto;
+  text-align: center;
+}
+
+.saved-image-container {
+  height: 300px;
+  margin: 0 auto;
+}
+
+img {
+  height: 300px;
+  width: auto;
+  display: inline-block;
+}
+
+.saved-images-container{
+  height: 550px;
+}
+
+.saved-container {
+  margin: 40px 0 50px 0;
+}
+
+.DeleteButton {
+  background-color: black;
+  width: 20px;
+  height: 20px;
+}
+
+.DeleteButton:hover {
+  background-color: lightgrey;
+}
+
 .saveImage:hover {
   background-color: lightgrey;
   cursor: pointer;
@@ -93,10 +127,13 @@ p#username {
 .saveImage {
   background-color: black;
   position: absolute;
-  top: 752px;
-  right: 50px;
-  width: 30px;
+  top: 975px;
   height: 30px;
+  width: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
 div.userInfo {
@@ -113,9 +150,14 @@ div.userInfo {
 }
 
 .vision-button {
-  margin-top: 40px;
+  top: 800px;
   font-size: 35px;
   text-align: center;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
 .boxcrosshair {
@@ -189,12 +231,57 @@ div.userInfo {
   cursor: hand;
 }
 
+.vision-button {
+  margin-top: 40px;
+  font-size: 35px;
+}
+
+.boxcrosshair {
+  height: 50px;
+  width: 50px;
+  margin-top: 43%;
+  background-color: black;
+  background-size: 45px 45px;
+  transition: transform .8s ease-in-out;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 3px solid #fafafa;
+}
+
+.crosshair {
+  height: 50px;
+  width: 50px;
+  background-color: black;
+  background-size: 45px 45px;
+  transition: transform .8s ease-in-out;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 3px solid #fafafa;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+}
+
+.boxcrosshair:hover {
+  background-color: red;
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+
 .crosshair:hover {
   background-color: red;
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
   cursor: pointer;
   cursor: hand;
+}
+
+.userName {
+  font-size: 20px;
 }
 
 header {
@@ -206,24 +293,26 @@ input {
   font-size: 17px;
   border: 2px solid black;
   padding: 3px;
-  margin: 3px;
+  margin: 7px;
   z-index: 2;
+  line-height: 22px;
 }
 
 .formbutton {
   z-index: 1;
   border: 2px solid black;
   position: relative;
-  right: 36px;
   padding: 3px;
   width: 90px;
+  right: -7px;
+  margin-bottom: 30px;
+  margin-top: 10px;
   line-height: 20px;
   text-align: center;
   font-size: 17px;
   cursor: pointer;
   cursor: hand;
   background-color: white;
-  margin: 0 auto;
 }
 
 .formbutton:hover {
@@ -235,21 +324,5 @@ input {
 .rover-container {
   display: inline-block;
 }
-.saved-images-container{
-  height: 550px;
-}.saved-container{
-  margin: 0 auto;
-  text-align: center;
-}
 
-.saved-image-container {
-  height: 300px;
-  margin: 0 auto;
-}
-
-img {
-  height: 300px;
-  width: auto;
-  display: inline-block;
-}
 /*# sourceMappingURL=main.css.map*/
