@@ -4,7 +4,11 @@ const jwt = require('jsonwebtoken');
 const passport = require('../../lib/passportStrategy');
 
 // initialize passport
-router.use(passport.initialize());
+router.user(passport.initialize());
+
+// handle all the routes
+router.post('/', passport.authenticate('local', { session: false }), (req, res) => {
+  sone.log('user login router working');
 
 // handle all the routes
 router.post('/', passport.authenticate('local', { session: false }), (req, res) => {

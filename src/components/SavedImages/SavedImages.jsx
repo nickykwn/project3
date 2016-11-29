@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD
+import './SavedImages.css';
+
+export default class Rover extends Component{
+
+=======
 import SavedImagesItem from '../SavedImagesItem/SavedImagesItem.jsx';
 
 export default class SavedImages extends Component{
+>>>>>>> 20ffc765159c57ad97cd78476dba5af5ed6d414a
 
   renderSavedImages() {
     console.log('saved images.............', this.props);

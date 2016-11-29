@@ -185,6 +185,8 @@ updateFormSignUpUsername(e) {
       }
     });
   }
+<<<<<<< HEAD
+=======
 
   handleSignUp() {
     fetch('/api/users', {
@@ -279,7 +281,82 @@ getSavedImages(username) {
   })
   .catch(err => console.log(err));
 }
+>>>>>>> 30c4a1a5650f0deb5a449aeaf52088ac3048d141
 
+<<<<<<< HEAD
+  handleSignUp() {
+    fetch('/api/users', {
+      headers: {
+        'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.signup.username,
+        password: this.state.signup.password
+      })
+    })
+    .then(this.setState({
+      username: this.state.login.username,
+      signup: {
+        username: '',
+        password: '',
+      }
+    }))
+    .then(this.alertInfo('You have signed up!'))
+    .catch(err => console.log(err));
+  }
+
+  handleLogIn() {
+    fetch('/api/auth', {
+      headers: {
+        'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        username: this.state.login.username,
+        password: this.state.login.password
+      })
+    })
+    .then(this.setState({
+      username: this.state.login.username,
+      login: {
+        username: '',
+        password: '',
+      }
+    }))
+    .then(this.onSuccessfulLogIn)
+    .catch(err => console.log(err));
+  }
+
+  onSuccessfulLogIn(a, b) {
+    console.log(a, b);
+  }
+
+  alertInfo(msg) {
+    alert(msg);
+  }
+
+saveSearch(url, url2, text, username) {
+  console.log('^^^^^^the username is:',username)
+  return fetch(`/images`, {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+
+    body: JSON.stringify({
+      'url': url,
+      'url2': url2,
+      'text': text,
+      'username': username
+    })
+  })
+  .catch(err => console.log(err));
+}
+  render(){
+    return (
+      <div className="app-container">
+=======
 handleSaveClick(url, url2, text, username) {
   this.saveSearch(url, url2, text, username);
   setTimeout(() => {this.getSavedImages(username)}, 300);
@@ -316,6 +393,7 @@ deleteSaved(id) {
         </header>
           <div className="image-container">
             <div className="login-container">
+>>>>>>> 20ffc765159c57ad97cd78476dba5af5ed6d414a
               <SignUpForm
                 signUpFormDisplay={this.state.signUpFormDisplay}
                 signUpUsername={this.state.signup.username}
@@ -359,12 +437,30 @@ deleteSaved(id) {
               getVisionData={this.getVisionData.bind(this)}
             />
           </div>
+<<<<<<< HEAD
+        <button>Refresh</button>
+        <Vision />
+          <div className="save-searches" onClick={() => this.saveSearch(this.state.roverImage, this.state.bingImage, this.state.visionText, this.state.username)}>
+          Save Searches
+          </div>
+
+          <div className="refreshButton" onClick={() => {this.refreshPage()}}>
+            <img className="refreshImage" src={this.state.Refresh} alt="Refresh"/>
+          </div>
+
+          <SavedImages
+          SavedImages={this.state.SavedImages}
+          getSavedImages={this.getSavedImages.bind(this)}
+          />
+
+=======
         <div className={this.state.saveButton} onClick={() => this.handleSaveClick(this.state.roverImage, this.state.bingImage, this.state.visionText, this.state.username)}>
           <img className="saveImage" src={this.state.Save} alt="Save"/>
         </div>
         <div className={this.state.refreshButton} onClick={() => {this.refreshPage()}}>
           <img className="refreshImage" src={this.state.Refresh} alt="Refresh"/>
         </div>
+>>>>>>> 20ffc765159c57ad97cd78476dba5af5ed6d414a
       </div>
         <SavedImages
           DeleteButton={this.state.DeleteButton}
